@@ -1,0 +1,15 @@
+default: &default
+  host: "<%= ENV['POSTGRES_DB_HOST'] %>"
+  port: 5432
+  adapter: postgresql
+  database: "<%= ENV['POSTGRES_DB_NAME'] %>"
+  pool: 5
+  timeout: 5000
+  schema_search_path: "public"
+  username: "<%= ENV['POSTGRES_DB_USER'] %>"
+  password: "<%= ENV['POSTGRES_DB_PASSWORD'] %>"
+  su_username: "<%= ENV['POSTGRES_DB_SU_USER'] %>"
+  su_password: "<%= ENV['POSTGRES_DB_SU_PASSWORD'] %>"
+
+development:
+  <<: *default

@@ -1,0 +1,19 @@
+production:
+  SLACK_API_TOKEN: xoxb-70676684256-A90gwQKhwfANvDwCcNPbbU2O
+  POSTGRES_DB_HOST: 127.0.0.1
+  POSTGRES_DB_NAME: slack_bot
+  POSTGRES_DB_USER: postgres
+  POSTGRES_DB_PASSWORD: root  
+  POSTGRES_DB_SU_USER: root
+  POSTGRES_DB_SU_PASSWORD: root
+development:
+  SLACK_API_TOKEN: xoxb-70676684256-A90gwQKhwfANvDwCcNPbbU2O
+  POSTGRES_DB_HOST: localhost
+  POSTGRES_DB_NAME: slack_bot
+  POSTGRES_DB_USER: root
+  POSTGRES_DB_PASSWORD: root
+  POSTGRES_DB_SU_USER: root
+  POSTGRES_DB_SU_PASSWORD: root
+
+  # sudo /etc/init.d/postgresql start 
+  # sudo -i -u test1
