@@ -1,8 +1,10 @@
 class SlackFinderService
 
-	def initialize(slack_id=nil, client)
-    @slack_id = slack_id
-    @user = client.users_info(user: slack_id).try(:user) if slack_id
+	def initialize(params = {})
+    @slack_id = params[:slack_id]
+    @slack_name = params[:slack_name]
+    @slack_client = params[:slack_client]
+    find_user
   end
 
 	def user_details
@@ -11,33 +13,35 @@ class SlackFinderService
 			result = {
         first_name: user.profile.first_name,
         last_name: user.profile.last_name,
-        slack_name: slack_name,
+        slack_name: get_slack_name,
         email_id: user.profile.email
       }
 		end
     result
 	end
 
-  def slack_name
+  def get_slack_name
     user.name
   end
 
-  def user_channel(slack_name)
-    slack_user_id = slack_user["id"]
-    chat = client.im_open(user: slack_user_id)
-    chat["channel"]["id"]
+  def user_channel
+    slack_id = user.id
+    chat = slack_client.im_open(user: slack_id)
+    chat.channel.id
   end
 
   private
 
-  attr_reader :user, :client
+  attr_reader :user, :slack_id, :slack_name, :slack_client
 
-  def slack_user
-    all_slack_users.find { |user_data| user_data["name"] = slack_username }
-  end
-
-  def all_slack_users
-    client.users_list["members"]
+  def find_user
+    user_identifier = nil
+    if slack_id
+      user_identifier = slack_id
+    else
+      user_identifier = '@'+slack_name
+    end
+    @user = slack_client.users_info(user: user_identifier).try(:user) 
   end
 
 end

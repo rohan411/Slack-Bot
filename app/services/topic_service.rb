@@ -1,8 +1,8 @@
 class TopicService
 
-	def initialize(user_id, text)
+	def initialize(user_id, content)
 		@user_id = user_id
-		@text = text
+		@content = content
 	end
 
 	def create
@@ -10,12 +10,12 @@ class TopicService
 	end
 
 	private 
-	attr_reader :user_id, :text
+	attr_reader :user_id, :content
 
 	def topic_details
 		{
 			user_id: user_id,
-			content: text
+			content: content
 		}
 	end 
 end

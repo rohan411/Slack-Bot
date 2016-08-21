@@ -23,6 +23,7 @@ gem 'foreman'
 gem 'sidekiq' # for background jobs
 gem 'sinatra', require: false # for web interface of sidekiq
 gem 'slim'    # for web interface of sidekiq
+gem 'sidekiq_remove_scheduled' # To remove scheduled sidekiq jobs
 
 gem 'hirb', '0.7.3' # better indentation in irb
 

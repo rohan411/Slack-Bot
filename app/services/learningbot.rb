@@ -7,8 +7,8 @@ class Learningbot
 		  config.logger.level = Logger::INFO
 		  fail 'Missing ENV[SLACK_API_TOKEN]!' unless config.token
 		end
-		$client = Slack::RealTime::Client.new
-		$client.start!
+		$slack_client = Slack::RealTime::Client.new
+		$slack_client.start!
 	end
 
 end

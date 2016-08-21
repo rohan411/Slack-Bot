@@ -1,6 +1,6 @@
 class LearningConfigurationService
 
-	SECONDS_IN_DAY = 86400
+	SECONDS_IN_DAY = 1
 
 	def initialize(user)
 		@user = user

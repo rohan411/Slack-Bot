@@ -12,5 +12,6 @@ class Topic < ActiveRecord::Base
 	end
 
 	def schedule_assessment
+		AssessmentService.new(self).schedule
 	end
 end
