@@ -3,18 +3,24 @@
 A slack bot for reminding and asking the users about the topic that they are learning. 
 
 
-## Prerequisite
-**Rails > 4**
-**Ruby > 2**
-**Redis**
-**Postgresql**
+## Prerequisite  
+
+*Rails > 4*  
+
+*Ruby > 2*  
+
+*Redis*
+
+*Postgresql*  
 
 
 ## Steps to run
-	* enter the slack bot token and database details in environment_variables.yml
-	* run `rails server`
-	* run `bundle exec sidekiq` (for background job server)
-	* visit the index url, e.g localhost:3000, to start the slack bot client
+* enter the slack bot token and database details in environment_variables.yml
+* run **rake db:create**
+* run **rake db:migrate**
+* run **rails server**
+* run **bundle exec sidekiq** (for background job server)
+* visit the index url, e.g localhost:3000, to start the slack bot client
 
 
 ## Usage
