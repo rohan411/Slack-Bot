@@ -1,3 +1,7 @@
+# Enum base class
+#
+# rohan.jha
+
 class Enum
   
   def self.get_list

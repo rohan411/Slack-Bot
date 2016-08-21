@@ -1,7 +1,12 @@
+# Service class for processing incoming slack messages
+#
+# rohan.jha
+
 require "slack-ruby-client"
 
 class MessageReaderService
-  def initialize(data = nil)
+
+  def initialize(data)
     @data = data
     @incoming_text = Slack::Messages::Formatting.unescape(data.text)
   end
@@ -9,9 +14,9 @@ class MessageReaderService
   def read
     case incoming_text
     when /learning/i  then
-        new_topic
+      new_topic
     when /^yes|no/i then
-        assessment_response
+      assessment_response
     end
   end
 
@@ -35,23 +40,22 @@ class MessageReaderService
   end
 
   def assessment_response
-      response = extract_response
-      topic_id = extract_topic_id
-      topic = Topic.find_by_id(topic_id)
-      if topic
-        if response == ResponseStatus::POSITIVE
-          AssessmentService.new(topic).positive_response
-        else
-          AssessmentService.new(topic).negative_response
-        end
+    response = extract_response_status
+    topic = Topic.find_by_id(extract_topic_id)
+    if topic
+      if response == MessageResponseStatus::POSITIVE
+        AssessmentService.new(topic).process_positive_response
+      else
+        AssessmentService.new(topic).process_negative_response
       end
+    end
   end
 
-  def extract_response
+  def extract_response_status
     if incoming_text.match(/^yes/i)
-      ResponseStatus::POSITIVE
+      MessageResponseStatus::POSITIVE
     else
-      ResponseStatus::NEGATIVE
+      MessageResponseStatus::NEGATIVE
     end
   end
 

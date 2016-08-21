@@ -1,23 +1,28 @@
+# Service class for maintaining an user's learning configuration
+#
+# rohan.jha
+
 class LearningConfigurationService
 
-	SECONDS_IN_DAY = 1
+  SECONDS_IN_DAY = 1
 
-	def initialize(user)
-		@user = user
-	end
+  def initialize(user)
+    @user = user
+  end
 
-	def create
-		configs = DefaultLearningConfiguration.get_values_array
-		create_config(configs)
-	end
+  def create
+    configs = DefaultLearningConfiguration.get_values_array
+    create_config(configs)
+  end
 
-	private 
+  private 
 
-	attr_reader :user
-	
-	def create_config(configs)
-		configs.each do |config|
-			LearningConfiguration.create(user_id: user.id, interval: SECONDS_IN_DAY*config)
-		end
-	end
+  attr_reader :user
+  
+  def create_config(configs)
+    configs.each do |config|
+      LearningConfiguration.create(user_id: user.id, interval: SECONDS_IN_DAY*config)
+    end
+  end
+  
 end

@@ -1,5 +1,5 @@
 production:
-  SLACK_API_TOKEN: xoxb-70676684256-fvwGjiL7zVJEpDSv61xilmNH
+  SLACK_API_TOKEN: abcd
   POSTGRES_DB_HOST: 127.0.0.1
   POSTGRES_DB_NAME: slack_bot
   POSTGRES_DB_USER: postgres
@@ -9,7 +9,7 @@ production:
   REDIS_HOST: localhost
   REDIS_PORT: '6379'
 development:
-  SLACK_API_TOKEN: xoxb-70676684256-fvwGjiL7zVJEpDSv61xilmNH
+  SLACK_API_TOKEN: abcd
   POSTGRES_DB_HOST: localhost
   POSTGRES_DB_NAME: slack_bot
   POSTGRES_DB_USER: root

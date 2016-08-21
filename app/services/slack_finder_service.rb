@@ -1,30 +1,34 @@
+# Service class containing methods to extract info from slack
+#
+# rohan.jha
+
 class SlackFinderService
 
-	def initialize(params = {})
+  def initialize(params = {})
     @slack_id = params[:slack_id]
     @slack_name = params[:slack_name]
     @slack_client = params[:slack_client]
     find_user
   end
 
-	def user_details
+  def fetch_user_details
     result = {}
-		if user
-			result = {
+    if user
+      result = {
         first_name: user.profile.first_name,
         last_name: user.profile.last_name,
         slack_name: get_slack_name,
         email_id: user.profile.email
       }
-		end
+    end
     result
-	end
+  end
 
   def get_slack_name
     user.name
   end
 
-  def user_channel
+  def find_user_channel
     slack_id = user.id
     chat = slack_client.im_open(user: slack_id)
     chat.channel.id
