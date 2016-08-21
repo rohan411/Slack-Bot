@@ -34,7 +34,7 @@ class MessageSenderService
   end
 
   def generate_text
-    "Hey @" + slack_name + ", do you remeber the topic_id : #{topic.id}, which is : #{topic.content}"
+    "Hey @" + slack_name + ", do you remeber the topic_id : #{topic.id}, which is : #{topic.content}?"
   end
   
 end

@@ -10,7 +10,11 @@ class TopicService
   end
 
   def create
-    Topic.create(topic_details)
+    begin
+      Topic.create(topic_details)  
+    rescue Exception => e
+      Rails.logger.error e.message
+    end
   end
 
   private 

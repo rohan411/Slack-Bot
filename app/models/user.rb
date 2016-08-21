@@ -4,6 +4,7 @@
 
 class User < ActiveRecord::Base
 
+  validates_uniqueness_of :email_id
 
   has_one :learning_configuration, dependent: :destroy
   has_many :topics, dependent: :destroy

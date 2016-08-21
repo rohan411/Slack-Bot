@@ -9,7 +9,11 @@ class UserService
   end
 
   def create
-    User.create(user_details)
+    begin
+      User.create(user_details)
+    rescue Exception => e
+      Rails.logger.error e.message
+    end
   end
 
   private

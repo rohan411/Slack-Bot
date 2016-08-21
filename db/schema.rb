@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 20160820080855) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "learning_configurations", ["user_id"], name: "index_learning_configurations_on_user_id", using: :btree
+
   create_table "scheduled_messages", force: :cascade do |t|
     t.integer  "user_id",    null: false
     t.datetime "topic_id",   null: false
@@ -39,12 +41,14 @@ ActiveRecord::Schema.define(version: 20160820080855) do
   end
 
   create_table "topics", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "content"
-    t.integer  "status"
+    t.integer  "user_id",    null: false
+    t.string   "content",    null: false
+    t.integer  "status",     null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "topics", ["user_id"], name: "index_topics_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name", null: false
@@ -54,5 +58,7 @@ ActiveRecord::Schema.define(version: 20160820080855) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "users", ["slack_name"], name: "index_users_on_slack_name", using: :btree
 
 end
